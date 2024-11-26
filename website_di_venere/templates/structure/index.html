@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'style/website_starting_page.css' %}">
+</head>
+<body>
+    <div class="background-image">
+    </div>
+
+
+    <div class="main-section">      
+        <div class="content-button">
+
+            <div class="Presentation">
+                <h2 class="fade-in">BENVENUTO NELLA PIATTAFORMA VENERE</h2>
+                <p class="fade-in">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Reiciendis dicta et repellat reprehenderit dolor labore
+                    obcaecati est vitae mollitia culpa pariatur aspernatur,
+                    sint error ducimus facere cum. Quas, soluta quaerat.
+                </p>
+            </div>
+
+            <div class="title-section fade-in">
+                    <h3>AREA DI ACCESSO ALLA PIATTAFORMA</h3>
+            </div>
+
+            <button class="paziente-section fade-in">
+                    <a href="{% url 'login-paziente' %}">
+                    <img src="{% static 'style/img/paziente.png' %}" alt="">
+                    <p>PAZIENTE</p>
+                    </a>
+            </button>
+            
+            <button class="medico-section fade-in">
+                    <a href="{% url 'login-medico' %}">
+                    <img src="{% static 'style/img/medico.png' %}" alt="">
+                    <p>MEDICO</p>
+                    </a>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelector('.scroll-indicator').addEventListener('click', function (event) {
+            event.preventDefault();
+    
+            const mainSection = document.getElementById('main-section');
+            if (mainSection) {
+              mainSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        });
+    </script>
+
+</body>
+</html>

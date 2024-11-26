@@ -1,0 +1,280 @@
+{% extends 'structure/homePageMedico.html' %}
+{% load static %}
+
+{% block title %}
+    Archivio Pazienti
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/css/archivioPazienti/archiviopazienti.css' %}">
+{% endblock %}
+
+{% block main-content-section %}
+    
+    <div class="main-content-section">
+
+        <div class="header">
+            <h2>ARCHIVIO PAZIENTI</h2>
+        </div>
+
+        <div class="tools-bar">
+
+            <p id="ricerca">Ricerca: </p>
+            <input type="text" class="barra-ricerca-input" placeholder="Inserire alcune lettere del cognome o del nome del paziente">
+            <button>🔍</button>
+         
+
+            <p id="filtri">Filtri: </p>
+            <select name="filtri-select" id="">
+                <option value="1">None</option>
+                <option value="2">- Nome</option>
+                <option value="3">+ Nome</option>
+                <option value="4">- Data</option>
+                <option value="5">+ Data</option>
+            </select>
+         
+        </div>
+        
+        <table id="myTable">
+            <thead>        
+                <tr>
+                    <th>Cognome</th>
+                    <th>Name</th>
+                    <th>Data di nascita</th>
+                    <th>Codice fiscale</th>
+                    <th>Indirizzo</th>
+                    <th>Dettagli</th>
+                    <th>Fine attività</th>
+                    <th><img src="{% static 'style/img/archivio_pazienti/cartella_documenti.png' %}" alt="" width="20px" height="20px" alt=""></th>
+                    <th><img src="{% static 'style/img/archivio_pazienti/accept.png' %}" alt="" width="20px" height="20px"></th>
+                    <th><img src="{% static 'style/img/archivio_pazienti/tools.png' %}" alt="" width="20px" height="20px"></th>
+                </tr>              
+            </thead>
+            <tbody id="tableBody">
+                <a href="" id="link">
+                    <!-- Populate table rows dynamically using JavaScript -->
+                </a>
+            </tbody>
+        </table>
+
+        <!--Add Function for change table layout-->
+        <div class="visualizza-elementi">
+            <div class="change-table-layout">
+                <p class="prev">Visualizza</p>
+                <select name="number-element" id="number-element" onchange="updateItemsPerPage()">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <p class="next">elementi</p>
+            </div>
+
+            <div class="numero-risultati">
+                <p>Risultati Ricerca:  {{ result }}</p>
+            </div>
+        </div>
+
+       
+
+
+        
+        <div class="Pagination">
+            <button id="prevButton" class="prev" onclick="goToPreviousPage()">Precendente </button>
+            <ul class="pagination" id="pagination"></ul>
+            <button id="nextButton" class="next" onclick="goToNextPage()">Successivo </button>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+
+                <div class="Head-section">
+                    <h1>Accettazione</h1>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+
+
+                <div class="Check-up-exam">
+                    <div class="Search-exam">
+                        <input type="text" placeholder="Inserisci qui l'esame da ricercare">
+                        <button class="search">🔍</button>
+
+                        <div class="search-result">
+                            <p>nessun risultato trovato</p>
+                        </div>
+                        <button onclick="acceptEntry()" class="save">Save</button>
+                    </div>
+
+
+                    <div class="check-list">
+                        <div class="check-button">
+                            {% for exam in esami %}
+                                <div class="esami">
+                                    <label for="option"> {{ exam }}</label>
+                                    <input type="checkbox" id="option" name="exam" value="{{ exam }}">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="overlay" class="overlay"></div>
+
+    </div>
+
+
+
+    <script>
+        // Access the data passed from the Django view 
+        // @ts-ignore
+        const dataFromDjango = {{data_json|safe}};
+        console.log('Data from Django:', dataFromDjango);
+    
+        let itemsPerPage = 10;
+        let currentPage = 1;
+    
+        const tableBody = document.getElementById('tableBody');
+        const pagination = document.getElementById('pagination');
+    
+        console.log('tableBody:', tableBody);
+        console.log('pagination:', pagination);
+    
+        //Display django data into html table
+        function displayData() {
+            tableBody.innerHTML = '';
+    
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+    
+            for (let i = start; i < end && i < dataFromDjango.length; i++) {
+
+                const row = document.createElement('tr');
+                const patientId = dataFromDjango[i].id; 
+                
+                row.innerHTML = `
+                    <td>${dataFromDjango[i].cognome}</td>
+                    <td>${dataFromDjango[i].nome}</td>
+                    <td>${dataFromDjango[i]['Data di nascita']}</td>
+                    <td>${dataFromDjango[i]['Codice Fiscale']}</td>
+                    <td>${dataFromDjango[i].Indirizzo}</td>
+                    <td>${dataFromDjango[i].Dettagli}</td>
+                    <td>${dataFromDjango[i]['Fine attività']}</td>
+                    <td>
+                        <a href="{% url 'cartella-paziente' %}?id=${patientId}" class="cartella-paziente">
+                            <img src="{% static 'style/img/archivio_pazienti/entra_cartella.png' %}" alt="" width="20px" height="20px">
+                        </a>
+                    </td>
+                    <td><button class="accept" onclick="openModal()"><img src="{% static 'style/img/archivio_pazienti/accettazione.png' %}" alt="" width="20px" height="20px"></button></td>
+                    <td><button><img src="{% static 'style/img/archivio_pazienti/delete.png' %}" alt="" width="20px" height="20px"></button></td>
+                `;
+            tableBody.appendChild(row);
+            }
+    
+            // Add placeholders if the page is not filled
+            for (let i = tableBody.children.length; i < itemsPerPage; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = ` <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td> 
+                                    <td>--</td> `;
+                tableBody.appendChild(row);
+            }
+        }
+        
+        function updateItemsPerPage() {
+            const selectElement = document.getElementById('number-element');
+            itemsPerPage = parseInt(selectElement.value,10);
+            currentPage = 1; // Reset to the first page when items per page changes
+            displayData();
+        }
+
+        //Display Pagination
+        function displayPagination() {
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(dataFromDjango.length / itemsPerPage);
+            const pagesToShow = 5; // Number of pages to display in the pagination bar
+
+            let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+            let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+            if (endPage - startPage + 1 < pagesToShow) {
+                startPage = Math.max(1, endPage - pagesToShow + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                li.textContent = i;
+
+                if (i === currentPage) {
+                    li.classList.add('active');
+                }
+
+                li.addEventListener('click', () => {
+                    currentPage = i;
+                    displayData();
+                    displayPagination();
+                });
+
+                pagination.appendChild(li);
+            }
+
+            // Add "Previous" and "Next" buttons
+            if (currentPage > 1) {
+                const prevButton = createPaginationButton('Previous', currentPage - 1);
+                pagination.appendChild(prevButton);
+            }
+
+            if (currentPage < totalPages) {
+                const nextButton = createPaginationButton('Next', currentPage + 1);
+                pagination.appendChild(nextButton);
+            }
+        }
+        // Function for previous page
+        function goToPreviousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayData();
+                displayPagination();
+            }
+        }
+        //Function for next page
+        function goToNextPage() {
+            const totalPages = Math.ceil(dataFromDjango.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayData();
+                displayPagination();
+            }
+        }
+
+        displayData();
+        displayPagination();
+        updateItemsPerPage();
+
+        //Show Modal For Accettazione
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function acceptEntry() {
+            console.log('Entry accepted');
+            closeModal(); 
+        }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,130 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+.background-image {
+    background-image: url("../style/img/venere.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 101%; 
+    height: 101%; 
+    position: absolute;
+    top: -0.1rem;
+    left: -0.1rem;
+    filter: blur(2px); 
+}
+
+
+/* Scrollbar style */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 6px; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+
+/* Main Section Style */
+.main-section{
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    transform: translate(30%, 20%);
+}
+.Presentation h2{
+    color: #cacaca; 
+    font-family: 'Arial', sans-serif; 
+    font-size: 30px; 
+    font-weight: bold; 
+    letter-spacing: 1px; 
+    margin-bottom: 10px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.Presentation p{
+    width: 80%;
+    color: #ffffff; 
+    font-family: 'Helvetica', sans-serif; 
+    font-size: 20px; 
+    line-height: 1.5;
+    margin-bottom: 15px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Presentation Animation */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+} 
+.fade-in:nth-child(2) {
+    animation-delay: 0.5s; 
+}
+.fade-in:nth-child(3) {
+    animation-delay: 0.8s; 
+}
+.fade-in:nth-child(4) {
+    animation-delay: 0.8s; 
+}
+
+
+.title-section{
+    color: #cacaca;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;    
+}
+.content-button > :nth-child(4) {
+    margin-left: 10px; 
+}
+.content-button button {
+    width: 120px; 
+    height: 120px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 2px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.content-button button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    background-color: #041760;
+}
+.content-button button p {
+    color: #3559E0;
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.content-button button img {
+    width: 80px;
+}
+.content-button button a {
+    text-decoration: none;
+}
+
+/*Media Query for all smartphone screen dimension*/
+@media only screen and (max-width: 900px){
+}
+/*Media Query for all smartphone screen rotation dimension*/
+@media only screen and (max-height: 600px){ 
+}
+

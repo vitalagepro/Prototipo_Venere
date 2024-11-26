@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home Page{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style/css/homePageMedico.css' %}">
+   
+    <!--JQuery script-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
+    <!--Dynamic Css-->
+    {% block css %}{% endblock %}
+
+</head>
+<body>
+    <div class="header-section">
+        <h2>LOGO E NOME</h2>
+        <div class="other">
+            <a href="{% url 'home-page-paziente' %}">
+                <img src="{% static 'style/img/homepage/home.png' %}" alt="" width="40px" height="40px">
+                <p>home</p>
+            </a>
+            <a href="{% url 'login-paziente' %}" id="esci-btn">
+                <img src="{% static 'style/img/homepage/logout.png' %}" alt="" width="40px" height="40px">
+                <p>esci</p>
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="main-section">
+
+        <div class="left-side-tools-bar">
+
+            <a href="{% url 'profilo-paziente' %}" id="profilo-btn" >
+                <img src="{% static 'style/img/homepage/profilo.png' %}" alt="">
+                <p>Profilo</p>
+            </a>
+            <a href="" id="archivio-pazienti-btn">
+                <img src="{% static 'style/img/homepage/diario.png' %}" alt="" width="60px" height="60px">
+                <p>Diario Clinico</p>
+            </a>
+            <a href="" id="elenco-referto-btn">
+                <img src="{% static 'style/img/homepage/pdf.png' %}" alt="">
+                <p>Elenco Referti</p>
+            </a>
+            
+            <a href="" id="tabella-analisi-btn">
+                <img src="{% static 'style/img/homepage/prescrizione.png' %}" alt="" width="60px" height="60px">
+                <p>Prescrizioni</p>      
+            </a>
+
+            <a href="" id="tabella-analisi-btn">
+                <img src="{% static 'style/img/homepage/telemedicina.png' %}" alt="">
+                <p>Telemedicina</p>      
+            </a>
+
+
+            <a href="{% url 'longevity' %}" id="longevity-btn">
+                <img src="{% static 'style/img/longevity/longevity.png' %}" alt="" width="60px" height="60px">
+                <p>Longevity</p>
+            </a>
+            
+        </div>
+            
+        {% block main-content-section %}
+
+            <div class="content-section">
+                <div class="benvenuto">
+                    <p class="title">BENVENUTO NELLA PIATTAFORMA VENERE</p>
+                    <div class="comunicazioni">
+                        <div class="comunicazioni-header">
+                            <img src="{% static 'style/img/homepage/megafono.png' %}" alt="">
+                            <p>COMUNICAZIONI PIATTAFORMA</p>
+                        </div>
+                        <p class="content-comunicazioni">
+                            Ci sarà una manutenzione
+                            alla piattaforma in data 03/05/2024 
+                            alle ore 11:00 e durerà circa 2 ore.
+                        </p>
+                    </div>
+                    <div class="Versione">
+                        <p>Versione Piattaforma: 1.0</p>
+                        <p>Ultimo aggiornamento: 06/02/2024</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="news-plattform">
+                    <div class="new-features">
+                        <div class="last-update">
+                            <p class="title">NOVITA' ULTIMO AGGIORNAMENTO</p> 
+                            <p class="sottotitolo">Ultima Versione: 1.0 (Beta version)</p>
+                            <ul class="funzionalità">
+                                <p class="ul-title">FUNZIONALITA':</p>
+                                <li>Aggiunta sezione 'Nuovo assistito'</li>
+                                <li>Aggiunta sezione 'Archivio Pazienti'</li>
+                                <li>(Archivio Pazienti) Aggiunta sezione 'Accettazione'</li>
+                                <li>(Archivio Pazienti) Aggiunta sezione 'Cartella Paziente'</li>
+                                <li>Aggiunta Sezione 'Calendario Prenotazioni'</li>
+                                <li>Aggiunta Sezione 'Home Page'</li>
+                            </ul>
+                            <ul class="bug">
+                                <p class="ul-title">BUG E FIX:</p>
+                                <li>Miglioramenti stabilità piattaforma</li>
+                                <li>Fixati errori grafici</li>
+                                <li>Fixati erorri sulle immagini di sfondo</li>
+                            </ul>
+
+                        </div>
+                        
+                        <div class="longevity-update">
+                            <p class="title">LONGEVITY UPDATE</p>
+                                <ul>
+                                    <p>FUNZIONALITA':</p>
+                                    <li>Aggiunta sezione longevity alla piattaforma</li>
+                                    <li>Aggiunta animazione nella home longevity</li>
+                                    <p>BUG E FIX:</p>
+                                    <li>migliorata la stabilità della piattaforma</li>
+                                </ul>
+                        </div>
+                    </div>
+                    
+
+                    <div class="news">
+                        <p class="title">NOTIZIE RECENTI</p>
+
+                        <div class="news-container">
+                            <div class="news-content">
+                                {% for data in news_data %}
+                                    <div class="news-item"><a  href="{{ data.url }}" class="news-url">
+                                        <p class="news-title">{{ data.title }}</p>
+                                        <p class="news-content">{{ data.description }}</p>
+                                    </a></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+
+</body>
+</html>

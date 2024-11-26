@@ -1,0 +1,106 @@
+{% extends 'structure/homePageMedico.html' %}
+{% load static %}
+
+{% block title %}
+    Calendario Prenotazioni
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/css/calendarioPrenotazioni/calendario.css' %}">
+{% endblock %}
+
+{% block main-content-section %}
+
+    <div class="main-content-section">
+        <div class="header">
+            <h2>CALENDARIO PRENOTAZIONI</h2>
+        </div>
+
+        <div class="Calendario-tools">
+
+            <div class="Layout-tools">
+                <div class="Layout">
+                    <p>Modifica Layout:</p>
+                    <select name="mese" id="meseSelect" onchange="showHideInput()">
+                        <option value="1">mese</option>
+                        <option value="2">giorno</option>
+                        <option value="3">cerca giorno</option>
+                    </select>
+                </div>
+
+                <div class="filtri-orario">
+                    <p>Filtro orario:</p>
+                    <select name="orario" id="">
+                        <option value="1">none</option>
+                        <option value="2">- orario</option>
+                        <option value="3">+ orario</option>
+                    </select>
+                </div>
+
+                <div id="calendarFieldContainer" class="Select-data">
+                    <label for="calendarField">Select a date:</label>
+                    <input type="date" id="calendarField" name="calendarField" disabled>
+                </div>
+
+            </div>
+
+            <div class="Ricerca-Nome">
+                <p>Ricerca per nome:</p>
+                <input class="ricerca" type="text" placeholder="inserisci il nome qui">
+                <button class="ricerca-btn">🔍</button>
+            </div>  
+                
+        </div>
+
+        <table id="myTable" class="Tabella-Calendario">
+            <thead class="tabella-header">        
+                <tr>
+                    <th>Lunedi</th>
+                    <th>Martedi</th>
+                    <th>Mercoledi</th>
+                    <th>Giovedi</th>
+                    <th>Venerdi</th>
+                    <th>Sabato</th>
+                    <th>Domenica</th>
+                </tr>              
+            </thead>
+        </table>
+
+        <table class="Calendario-body">
+            <tbody id="tableBody" class="Calendario-content">
+                {% for i in num_giorni %}
+
+                    {% if forloop.counter0|divisibleby:7 %}
+                        </tr><tr>
+                    {% endif %}
+
+
+                    <td class="cella">
+                        <a href="#" class="link-day">
+                            
+                            <p class="numero-data">{{ i }}</p>
+
+                            {% for j in Prenotazioni %}
+
+                                {% if i == j.data %}    
+                                    <div class="prenotazione">
+                                        <p>{{ j.nome_prenotazione }}</p>
+                                        <p>{{ j.orario_prenotazione }}</p>
+                                    </div>
+                                {% endif %}
+
+                            {% endfor %}
+                        
+                        </a>
+                    </td>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    
+    <script src="{% static 'style/js/calendario/scriptCalendario.js' %}" defer></script>
+
+{% endblock %}

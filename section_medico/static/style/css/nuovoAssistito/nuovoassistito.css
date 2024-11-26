@@ -1,0 +1,151 @@
+body{
+    background-color: rgb(224, 224, 224);
+}
+.main-content-section{
+    width: 78%;
+    background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0px 5px 5px 5px;
+    box-shadow: 1px 2px 15px 10px rgba(57, 57, 57, 0.2);
+    height: 1000px;
+}
+
+.header{
+    background-color: lightgrey;
+    height: 100px;
+    display: flex;
+}
+.header h2{
+    color: rgb(83, 83, 83);
+    margin-top: 2rem;
+    margin-left: 5rem;
+}
+.table-content-layout{
+    margin-top: 4rem;
+}
+.column-content{
+    width: 90%;
+    margin-left: 5%;
+}
+.column-content div{
+    margin-top: -0.06rem;
+    display: flex;
+    border: 1px solid rgb(198, 198, 198, 0.5);
+    height: 60px;
+}
+.column-content div input{
+    height: 40px;
+    border: 1px solid rgb(198, 198, 198, 1);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 1%;
+    width: 86%;
+    font-size: 20px;
+}
+.tag{
+    width: 10%;
+}
+.tag p{
+    font-family:'Times New Roman', Times, serif;
+    margin-left: 1rem;
+}
+.row1{
+    background-color: white;
+}
+.row2{
+    background-color: rgb(224, 224, 224, 0.4);
+}
+.column-content select{
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 1%;
+    width: 86.5%;
+    border: 1px solid rgb(198, 198, 198, 1);
+}
+.submitt-div{
+    width: 50%;
+    margin-left: 5%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+.submit{
+    border-radius: 5px;
+    border: 1px solid rgb(0, 195, 255);
+    background-color: white;
+    color: rgb(0, 195, 255);
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+}
+.delete{
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(224, 224, 224);
+    width: 200px;
+    height: 30px;
+    font-size: 15px; 
+}
+.delete:hover,
+.submit:hover{
+    cursor: pointer;
+}
+#nuovo-assistito-btn{
+    background-color: #4CB9E7;
+    width: 98%;
+    border-radius: 5px 0px 0px 5px;
+    color: white;
+}
+
+
+/* Media Query for smartphones */
+@media only screen and (max-width: 767px){
+    .main-content-section{
+        height: 710px;
+        margin-left: 0.2rem;
+    }
+    .main-content-section h2{
+        font-size: 15px;
+    }
+
+    .title{
+        height: 50px;
+    }
+    .tag{
+        font-size: 15px;
+        width: 90px;
+    }
+    .tag p{
+        margin-left: 0.5rem;
+        margin-top: 1rem;
+    }
+    .table-content-layout{
+        margin-top: 1rem;
+    }
+    .column-content div input,
+    .column-content div select{
+        height: 25px;
+    }
+    .column-content div{
+        height: 50px;
+    }
+    .submitt-div{
+        display: flex;
+        margin-top: 3rem;
+    }
+    .submit,
+    .delete{
+        font-size: 15px;
+        width: 80px;
+        margin-right: 0.5rem;
+    }
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px){
+    .tag{
+        width: 90px;
+    }
+}
+
+
+

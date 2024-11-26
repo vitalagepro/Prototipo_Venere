@@ -1,0 +1,91 @@
+{% extends 'structure/homePagePaziente.html' %}
+{% load static %}
+
+{% block title %}
+    Archivio Pazienti
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/css/profilo/profilo.css' %}">
+{% endblock %}
+
+{% block main-content-section %}
+    
+    <div class="main-content-section">
+        
+        <div class="header">
+            <h2>PROFILO</h2>
+        </div>
+        
+        <div class="profilo-header">
+            <div class="info">
+                <p>Nome:</p>
+                <p>Cognome:</p>
+                <p>Codice fiscale:</p>
+            </div>
+            <div class="info-data">
+                <p>Giovanni</p>
+                <p>Rossi</p>
+                <p>-----</p>
+            </div>  
+            
+            <div class="img">
+                <img src="{% static 'style/img/homepage/profilo.png' %}" alt="" width="120px" height="120px">
+            </div>
+            <div class="tools">
+                <div class="first-row">
+                    <button class="diario-clinico"><img src="{% static 'style/img/homepage/diario.png' %}" alt="" width="50px" height="50px"></button>
+                    <button class="modifica"><img src="{% static 'style/img/profilo/modificadati.png' %}" alt="" width="50px" height="50px"></button>
+                </div>
+                <div class="second-row">
+                    <button class="diario-clinico"><img src="{% static 'style/img/profilo/modificaimg.png' %}" alt="" width="50px" height="50px"></button>
+                    <button class="diario-clinico"><img src="{% static 'style/img/profilo/supporto.png' %}" alt="" width="50px" height="50px"></button>   
+                </div>
+            </div>
+        </div>
+
+        <div class="all-info">
+            
+            <div class="Residenza">
+                <h3>RESIDENZA</h3>
+
+                <div class="residenza-content">
+                    <div class="residenza-info">
+                        <p>Data di nascita:</p>
+                        <p>Luogo di nascita:</p>
+                        <p>Città di Residenza:</p>
+                        <p>Via di Residenza</p>
+                        <p>Cap:</p>
+                    </div>
+                    <div class="residenza-data">
+                        <p>-</p>
+                        <p>-</p>
+                        <p>-</p>
+                        <p>-</p>
+                        <p>-</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="Contatti">
+                <h3>CONTATTI</h3>
+
+                <div class="contatti-content">
+                    <div class="contatti-info">
+                        <p>Numero telefono:</p>
+                        <p>Email:</p>
+                        <p>Posta elettronica:</p>
+                    </div>
+                    <div class="contatti-data">
+                        <p>-</p>
+                        <p>-</p>
+                        <p>-</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

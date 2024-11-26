@@ -1,0 +1,103 @@
+{% extends 'structure/homePageMedico.html' %}
+{% load static %}
+
+{% block title %}
+    Nuovo Assistito
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/css/nuovoAssistito/nuovoassistito.css' %}">
+{% endblock %}
+
+{% block main-content-section %}
+    <div class="main-content-section">
+
+        <div class="header">
+            <h2>INSERISCI UN NUOVO ASSISTITO</h2>
+        </div>
+
+        <div class="table-content-layout">
+            <div class="column-content">
+                <div class="row1">
+                    <div class="tag">
+                        <p>Cognome:</p>
+                    </div>
+                    <input type="text" class="Cognome">  
+                </div>
+                <div class="row2">
+                    <div class="tag">
+                        <p>Nome:</p>
+                    </div>
+                    <input type="text" class="Nome">
+                </div>
+                <div class="row1">
+                    <div class="tag">
+                        <p>Luogo di nascita:</p>
+                    </div>
+                    <input type="Luogo-nascita">
+                </div>  
+                <div class="row2">
+                    <div class="tag">
+                        <p>Data di nascita:</p>
+                    </div>
+                    <input type="Data-nascita">
+                </div>
+                <div class="row1">
+                    <div class="tag">
+                        <p>Sesso:</p>
+                    </div>
+                    <select name="sesso" id="">
+                        <option value="1">M</option>
+                        <option value="2">F</option>
+                    </select>
+                </div>
+                <div class="row2">
+                    <div class="tag">
+                        <p>Indirizzo / Residenza:</p>
+                    </div>
+                    <input type="text" class="Indirizzo">
+                </div>
+                <div class="row1">
+                    <div class="tag">
+                        <p>Provincia:</p>
+                    </div>
+                    <select name="Provincia" id="">
+                        {% for prov in province %}
+                            <option value="option">{{ prov }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row2">
+                    <div class="tag">
+                        <p>Città:</p>
+                    </div>
+                    <input type="text" class="Città">
+                </div>
+                <div class="row1">
+                    <div class="tag">
+                        <p>Cellulare:</p>
+                    </div>
+                    <input type="text" class="Cellulare">
+                </div> 
+                <div class="row2">
+                    <div class="tag">
+                        <p>Email:</p>
+                    </div>
+                    <input type="text" class="Email">
+                </div>
+                <div class="row1">
+                    <div class="tag">
+                        <p>Codice Fiscale:</p>
+                    </div>
+                    <input type="text" class="Codice-Fiscale">
+                </div>
+            </div>
+        </div>
+        
+        <div class="submitt-div">
+            <button class="submit">Inserisci</button>
+            <button class="delete">Cancella</button>
+        </div>
+
+    </div>
+{% endblock %}

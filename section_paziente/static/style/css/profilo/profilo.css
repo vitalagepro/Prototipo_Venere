@@ -1,0 +1,89 @@
+.main-content-section {
+    width: 78%;
+    background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0px 5px 5px 5px;
+    box-shadow: 1px 2px 15px 10px rgba(57, 57, 57, 0.2);
+    height: 1000px;
+    padding-bottom: 100px;
+}
+#profilo-btn {
+    background-color: #4CB9E7;
+    width: 98%;
+    border-radius: 5px 0px 0px 5px;
+    color: white;
+}
+
+.header{
+    background-color: lightgray;
+    height: 100px;     
+    margin-top: -1.3rem;
+}
+.header h2{
+    color: rgb(83, 83, 83);
+    padding: 30px;
+    margin-left: 1rem;
+}
+
+.profilo-header{
+    display: flex;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2rem;
+    border: 1px solid lightgrey;
+}
+.info,
+.info-data{
+    width: 20%;
+    padding: 20px;
+    font-size: 16px;
+}
+.tools{
+    width: 30%;
+    position: absolute;
+    left: 78%;
+    padding: 20px;
+}
+.img{
+    width: 30%;
+}
+.img img{
+    padding: 20px 20px 20px 270px;
+}
+
+.tools div button{
+    border-radius: 5px;
+    border: none;   
+    margin-bottom: 0.2rem;
+}
+.tools div button:hover{
+    transform: scale(1.1);
+    background-color: #4CB9E7;
+    cursor: pointer;
+}
+
+
+.all-info{
+    display: flex;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2rem;
+    border: 1px solid lightgrey;
+}
+.Residenza,
+.Contatti{
+    width: 50%;
+}
+.Residenza h3,
+.Contatti h3{
+    margin-left: 1rem;
+    color: rgb(83, 83, 83);
+}
+
+.residenza-content,
+.contatti-content{
+    display: flex;
+    padding: 0px 20px 20px 20px;
+}
+

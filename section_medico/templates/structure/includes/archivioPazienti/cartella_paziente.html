@@ -1,0 +1,167 @@
+{% extends 'structure/homePageMedico.html' %}
+{% load static %}
+
+{% block title %}
+    Cartella Paziente
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'style/css/archivioPazienti/cartella_paziente.css' %}">
+{% endblock %}
+
+{% block main-content-section %}
+    
+    <div class="main-content-section">
+    
+        <div class="header">
+            <a href="{% url 'archivio-pazienti' %}" class="back"><img src="{% static 'style/img/archivio_pazienti/indietro.png' %}" alt=""></a>
+            <h2>CARTELLA PAZIENTE: {{ data }} cognome</h2>
+        </div>
+
+        <div class="cartella">
+            <div class="name-section">
+                <div class="dati-name">
+                    <p>Nome: {{ data }}</p>
+                    <p>Cognome: ----- </p>
+                    <p>Sesso: ---- </p>
+                    <p>Codice Fiscale: ----- </p>
+                </div>
+                <img src="{% static 'style/img/archivio_pazienti/cartella_documenti.png' %}" alt="" width="150px" height="150px">
+            </div>
+
+            <div class="other-information">
+                <div class="birth-section">
+                    <p>Data di nascita: ----- </p>
+                    <p>Luogo di nascita: ----- </p>
+                    <p>Indirizzo: ----- </p>
+                    <p>Provincia: ----- </p>
+                    <p>Città: ----- </p>
+                </div>
+
+                <div class="contatti">
+                    <p>Cellulare: ------ </p>
+                    <p>Email: ------ </p>
+                </div>
+
+            </div>
+
+            <div class="esami-paziente">
+                <div class="esami-header">
+                    <p>ESAMI E ANALISI PAZIENTE</p>
+                    <button class="add" onclick=openModalAdd()><img src="{% static 'style/img/cartella_paziente/add.png' %}" alt="" width="50px" height="50px"></button>
+                    <button class="send" onclick=openModalSend()><img src="{% static 'style/img/cartella_paziente/send.png' %}" alt="" width="50px" height="50px"></button>
+                </div>
+
+                <div class="tab-esami">
+                    <div class="tab-head">
+                        <p>Nome Esame/Visita</p>
+                        <p>Data Esame/Visita</p>
+                        <p>Data Caricamento Documento</p>
+                        <p>Data Invio Documento</p>
+                    </div>
+
+                    {% for esami in esami_list %}
+                        <!-- IMPLEMENTARE QUESTA FUNZIONE CON IL DATABASE -->
+                    {% endfor %}
+
+                </div>
+                
+            </div>
+        </div>
+
+        <div id="ModalAdd" class="modalAdd">
+            <div class="modal-content">
+
+                <div class="Head-section">
+                    <h2>INSERISCI UN NUOVO DOCUMENTO</h2>
+                    <span class="close" onclick="closeModalAdd()">&times;</span>
+                </div>
+
+                <div class="form-input">
+                    <!--IMPLEMENT THE FORM FUNCTION WITH BACKEND-->
+                    <form action="" class="AddDocumentoForm">
+                        <div class="NomeEsame">
+                            <p>Nome Esame / Visita:</p>
+                            <input type="text" placeholder="Inserisci il nome dell'esame qui">
+                        </div>
+                        <div class="DataEsame">
+                            <p>Data Esame / Visita:</p>
+                            <input type="text" placeholder="Inserisci la data dell'esame qui">
+                        </div>
+                        <div class="DataCaricamentoDocumento">
+                            <p>Data Caricamento Documento:</p>
+                            <input type="text" placeholder="Inserisci la data qui">
+                        </div>
+                        <div class="DataInvioDocumento">
+                            <p>Data Invio Documento:</p>
+                            <input type="text" placeholder="Inserisci la data di invio documento">
+                        </div>
+
+                        <div class="UploadSubmit">
+                            <div class="UploadFile">
+                                <label for="fileUpload">Choose a file:</label>
+                                <input type="file" id="fileUpload" name="fileUpload">
+                            </div>
+                            
+                            <div class="Submitbtn">
+                                <input type="submit" value="Upload">
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="ModalSend" class="modalSend">
+            <div class="headerSend">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p>Procedere con l'invio di tutti i documenti al paziente?</h2>
+            </div>
+            <button onclick="confirmAction()">Yes</button>
+            <button onclick="closeModal()">No</button>
+        </div>
+        
+        <!-- Overlay background -->
+        <div id="overlay" class="overlay"></div>
+
+  
+    </div>
+
+    <script>
+        /* FUNCTION FOR MODAL 'ADD DOCUMENT'*/
+        function openModalAdd() {
+            document.getElementById('ModalAdd').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModalAdd() {
+            document.getElementById('ModalAdd').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function acceptEntry() {
+            console.log('Entry accepted');
+            closeModal(); 
+        }
+
+        /* FUNCTION FOR MODAL 'SEND DOCUMENT'*/
+        function openModalSend() {
+            document.getElementById('ModalSend').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('ModalSend').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function confirmAction() {
+            alert('Tutti i documenti sono stati inviati al paziente correttamente!');
+            closeModal();
+        }
+    </script>
+
+{% endblock %}

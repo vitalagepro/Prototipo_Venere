@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Login</title>
+    <link rel="stylesheet" href="{% static 'style/css/login_medico.css' %}">
+</head>
+<body>  
+    <div class="background-image">
+    </div>
+
+    <a class="back" href="{% url 'home-starting-page' %}"><img src="{% static 'style/img/back.png' %}" alt=""></a>
+
+    <div class="login-section">
+        <form action="{% url 'login-paziente' %}" method="POST">
+            {% csrf_token %}
+
+            <h2>LOGIN PAZIENTE</h2>
+            <div class="username">
+                <div class="username-image">
+                    <img src="https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png" alt="" width="40px" height="40px">
+                </div>
+                <input class="username-input" type="text" placeholder="Username" name="username">
+            </div>
+    
+            <hr class="orizontal">
+    
+            <div class="password">
+                <div class="username-image">
+                    <img src="https://cdn1.iconfinder.com/data/icons/money-an-icon2/164/5-512.png" alt="" width="40px" height="40px">
+                </div>
+                <input class="password-input" type="password" placeholder="password" name="password">
+            </div>
+
+            <hr class="orizontal">
+            <p class="forgot"><a href="">Forgot password?</a></p>
+            <button class="sign-up-button" type="submit">SIGN IN</button> 
+        </form>
+    </div>
+
+</body>
+</html>
